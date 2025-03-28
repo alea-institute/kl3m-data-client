@@ -1,0 +1,109 @@
+[MASTER]
+# Use multiple processes to speed up Pylint
+jobs=4
+
+# Allow loading of arbitrary C extensions. Extensions are imported into the
+# active Python interpreter and may run arbitrary code.
+unsafe-load-any-extension=no
+
+[MESSAGES CONTROL]
+# Only show warnings with the listed confidence levels. Leave empty to show all.
+# Valid levels: HIGH, INFERENCE, INFERENCE_FAILURE, UNDEFINED
+confidence=
+
+# Disable the message, report, category or checker with the given id(s).
+disable=
+    # Cosmetic and stylistic issues
+    line-too-long,               # C0301
+    too-many-lines,              # C0302
+    consider-using-in,           # R1714
+    duplicate-code,              # R0801
+    unnecessary-ellipsis,        # W0106
+    no-else-return,             # R1705 - Style preference
+    too-many-positional-arguments, # R0917 - API design decision
+    too-many-nested-blocks,     # R1702 - Complex code that would be hard to simplify
+    too-many-arguments,         # R0913 - API design decision
+    too-many-branches,          # R0912 - Complex functions with many conditions
+    too-many-statements,        # R0915 - Complex functions
+    
+    # Technical but not critical issues
+    broad-exception-caught,      # W0718 - Common in utility libraries
+    import-outside-toplevel,     # C0415 - Used for lazy loading to improve performance
+    
+    # False positives with third-party libraries
+    import-error,               # E0401 - AWS imports are fine
+    
+    # Logging preferences
+    logging-fstring-interpolation  # W1203 - Project style decision to use f-strings for logging
+
+[REPORTS]
+# Include message's id in output
+msg-template="{path}:{line}:{column}: {msg_id}: {msg} ({symbol})"
+
+# Set the output format. Available formats are text, parseable, colorized, json and msvs
+output-format=colorized
+
+# Tells whether to display a full report or only the messages
+reports=no
+
+# Python expression which should return a note less than 10 (10 is the highest
+# note). You have access to the variables errors, warnings, refactor, convention,
+# info, statement which contain the number of messages in each category, as well
+# as "fatal", "error", and "warning" which contain the number of messages with
+# these types.
+evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10)
+
+[VARIABLES]
+# Tells whether we should check for unused import in __init__ files.
+init-import=no
+
+# A regular expression matching the name of dummy variables (i.e. expectedly not used).
+dummy-variables-rgx=_+$|(_[a-zA-Z0-9_]*[a-zA-Z0-9]+?$)|dummy|^ignored_|^unused_
+
+# List of additional names supposed to be defined in builtins.
+additional-builtins=
+
+# List of strings which can identify a callback function by name.
+callbacks=cb_,_cb
+
+[FORMAT]
+# String used as indentation unit - should be 4
+indent-string='    '
+
+# Expected format of line ending, e.g. empty (any line ending), LF or CRLF.
+expected-line-ending-format=
+
+[MISCELLANEOUS]
+# List of note tags to take in consideration
+notes=FIXME,XXX,TODO
+
+[DESIGN]
+# Maximum number of arguments for function / method
+max-args=8
+
+# Maximum number of locals for function / method body
+max-locals=25
+
+# Maximum number of return / yield for function / method body
+max-returns=10
+
+# Maximum number of branch for function / method body
+max-branches=20
+
+# Maximum number of statements in function / method body
+max-statements=75
+
+# Maximum number of parents for a class (see R0901).
+max-parents=7
+
+# Maximum number of attributes for a class (see R0902).
+max-attributes=12
+
+# Minimum number of public methods for a class (see R0903).
+min-public-methods=1
+
+# Maximum number of public methods for a class (see R0904).
+max-public-methods=30
+
+# Maximum number of boolean expressions in an if statement
+max-bool-expr=6
